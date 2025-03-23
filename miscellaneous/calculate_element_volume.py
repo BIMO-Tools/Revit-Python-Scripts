@@ -51,6 +51,5 @@ for elem in elements:
         esults.append(str(e))  # Возвращаем ошибку для проблемных элементов
 
 
-# Возвращаем результат в Dynamo
-OUT = results
-print(OUT)
+# Возвращаем результат
+print(results)
