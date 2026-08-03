@@ -1,68 +1,66 @@
-
-![run_python_cover](https://github.com/user-attachments/assets/bfba335f-8ee6-4665-8fc6-f75f4372acd3)
+![BIMO Run Python](https://github.com/user-attachments/assets/bfba335f-8ee6-4665-8fc6-f75f4372acd3)
 
 # BIMO Run Python Scripts
 
-Welcome to the **BIMO Revit Python Scripts** repository! This repository is a collection of useful Python scripts designed to work with the **[Run Python](https://bimo.tools/tools?button=runPython)** command in the **[BIMO Add-in](https://bimo.tools)** for Autodesk Revit. The scripts aim to automate routine and complex tasks, streamlining workflows for Revit users.
+Community-maintained Revit automation scripts for [BIMO Run Python](https://bimo.tools/docs/library/run-python). The repository is designed for both direct use by Revit users and machine discovery by AI agents that execute approved scripts through BIMO MCP.
 
-## 📋 About
+## Quick start
 
-The **BIMO Add-in for Revit** includes a powerful **[Run Python](https://bimo.tools/tools?button=runPython)** command, which allows users to execute custom Python scripts within the Revit environment. This repository is intended to provide ready-to-use scripts for various tasks, along with examples to help you write your own.
+1. Download or clone this repository.
+2. In Revit, open **BIMO > Run Python** and create a preset.
+3. Select the engine declared for the script in [`catalog.json`](catalog.json).
+4. Leave the inline **Script** field empty and set **Script file** to the `.py` file.
+5. Add the documented `IN` values, prepare the required selection, and run the preset.
 
-Feel free to explore the scripts, adapt them to your projects, or contribute by sharing your own scripts!
+BIMO hosts the Python engine inside Revit, so users do not need a separate local Python installation just to run these scripts. Scripts that modify a model manage their own Revit transactions.
 
-## 🗂️ Repository Structure
+## Script catalog
 
-The scripts in this repository are organized into categories to make it easier to find relevant code for your needs:
+| Script | Category | Engine | Risk |
+| --- | --- | --- | --- |
+| [Create Toposolid from model lines](modeling/create_toposolid_from_model_lines.md) | Modeling | IronPython | Writes model |
+| [Calculate selected lines length](miscellaneous/calculate_selected_lines_length_mm.md) | Miscellaneous | IronPython | Read-only |
+| [Calculate element volume](miscellaneous/calculate_element_volume.md) | Miscellaneous | IronPython | Read-only |
+| [Delete BIMO preview rays](miscellaneous/Delete_BIMO_PreviewRays_DirectShapes.md) | Miscellaneous | IronPython | Deletes elements |
 
-- **`wall_scripts/`**: Scripts related to wall management, such as counting walls, calculating wall areas, or modifying wall properties.
-- **`door_scripts/`**: Scripts for managing doors, including swing direction checks, door schedules, and door counts.
-- **`model_management/`**: Scripts to manage and optimize Revit models, like purging unused elements, auditing models, and adjusting views.
-- **`room_scripts/`**: Scripts related to room management, such as calculating room volumes, adjusting room boundaries, and renaming rooms.
-- **`miscellaneous/`**: Various scripts for tasks not covered in the other categories.
+The authoritative machine-readable index is [`catalog.json`](catalog.json). Its contract is defined by [`schemas/catalog.schema.json`](schemas/catalog.schema.json).
 
-Each folder contains a README file with specific instructions on how to use the scripts in that category.
+## Repository structure
 
-## 🛠️ How to Use the Scripts
+```text
+catalog.json                  Machine-readable script index
+schemas/catalog.schema.json  Catalog JSON Schema
+modeling/                     Model-creation and editing scripts
+miscellaneous/                General-purpose scripts
+tools/validate_catalog.py     Dependency-free repository validator
+.github/workflows/            Continuous validation
+```
 
-### Requirements
+Every executable script has a paired Markdown file explaining selection requirements, inputs, output, supported Revit versions, and model-change risk. Existing script paths are kept stable so saved BIMO presets do not break.
 
-- Autodesk Revit with the **BIMO Add-in** installed.
-- Python installed on your system (if you plan to write your own scripts).
+## Using the catalog from an AI agent
 
-### Running a Script
+An agent should:
 
-1. Open Autodesk Revit.
-2. Go to the **BIMO** tab on the Revit toolbar.
-3. Click the **[Run Python](https://bimo.tools/tools?button=runPython)** button.
-4. From the dropdown menu, select the Python script you want to execute (or load a new script from your computer).
-5. Click **OK** to run the script and view the results.
+1. Filter `catalog.json` by category, tags, engine, Revit version, and risk.
+2. Read the script documentation before execution.
+3. Confirm required selection and inputs.
+4. Treat `write` and `destructive` scripts as model-changing operations requiring explicit approval.
+5. Load the exact file referenced by `path` and execute it through the supported BIMO Run Python or MCP operation.
+6. Return the script's `OUT` value or execution error without claiming success before Revit confirms it.
 
-### Example Scripts
+The catalog helps discovery; it is not an execution allowlist or a security boundary. Review scripts before running them and use a test model for model-changing operations.
 
-Here are some example scripts you can start with:
+## Contributing
 
-1. **Count Walls**: Counts the total number of walls in the active model.
-2. **Door Swing Direction**: Checks the swing direction of all doors and stores the result in the door's parameters.
-3. **Purge Unused Elements**: Cleans up the Revit model by purging unused families, materials, and styles.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the script contract and submission checklist. Validate changes locally with:
 
-## 🤝 Contributing
+```shell
+python tools/validate_catalog.py
+```
 
-We welcome contributions from the community! If you have a useful script that you'd like to share, please follow these steps:
+The same check runs in GitHub Actions.
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b your-feature-branch`).
-3. Add your script in the appropriate folder.
-4. Commit your changes (`git commit -m 'Add new Python script'`).
-5. Push to the branch (`git push origin your-feature-branch`).
-6. Open a pull request and provide a brief description of your script.
+## License
 
-## 💬 Support
-
-If you encounter any issues or have questions about the scripts, feel free to open an issue in the GitHub repository or reach out to the community for support.
-
-For more information on the **BIMO Add-in**, visit the [BIMO Tools website](https://bimo.tools).
-
-## 📜 License
-
-This repository is licensed under the [MIT License](LICENSE).
+Distributed under the [MIT License](LICENSE).

@@ -1,0 +1,163 @@
+{
+  "$schema": "schemas/catalog.schema.json",
+  "version": 1,
+  "scripts": [
+    {
+      "id": "modeling.create-toposolid-from-model-lines",
+      "name": "Create Toposolid from model lines",
+      "summary": "Samples selected model curves and creates a point-based Toposolid from their XYZ elevations.",
+      "category": "modeling",
+      "path": "modeling/create_toposolid_from_model_lines.py",
+      "documentation": "modeling/create_toposolid_from_model_lines.md",
+      "engine": "ironpython",
+      "revit": {
+        "minimum": 2024,
+        "tested": []
+      },
+      "risk": "write",
+      "requiresActiveDocument": true,
+      "selection": {
+        "required": true,
+        "description": "Three or more non-collinear XYZ points sampled from selected ModelCurve elements."
+      },
+      "inputs": [
+        {
+          "index": 0,
+          "name": "sampling_step_mm",
+          "type": "number-string",
+          "required": false,
+          "default": "1000",
+          "description": "Approximate sampling interval along each selected curve, in millimetres."
+        },
+        {
+          "index": 1,
+          "name": "xy_tolerance_mm",
+          "type": "number-string",
+          "required": false,
+          "default": "1",
+          "description": "XY tolerance used to merge duplicate sampled points, in millimetres."
+        },
+        {
+          "index": 2,
+          "name": "toposolid_type_name",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "Exact Toposolid type name. The first type alphabetically is used when omitted."
+        },
+        {
+          "index": 3,
+          "name": "level_name",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "Exact level name. The active view level or nearest level is used when omitted."
+        }
+      ],
+      "output": {
+        "format": "text",
+        "description": "Created element ID and a summary of the sampled geometry, type, level, and Z range."
+      },
+      "tags": [
+        "site",
+        "terrain",
+        "topography",
+        "toposolid",
+        "model-curves",
+        "selection"
+      ]
+    },
+    {
+      "id": "miscellaneous.calculate-selected-lines-length-mm",
+      "name": "Calculate selected lines length in millimetres",
+      "summary": "Calculates the total length of selected curve elements and prints millimetres.",
+      "category": "miscellaneous",
+      "path": "miscellaneous/calculate_selected_lines_length_mm.py",
+      "documentation": "miscellaneous/calculate_selected_lines_length_mm.md",
+      "engine": "ironpython",
+      "revit": {
+        "minimum": 2024,
+        "tested": []
+      },
+      "risk": "read",
+      "requiresActiveDocument": true,
+      "selection": {
+        "required": true,
+        "description": "One or more CurveElement instances. Non-curve elements are ignored."
+      },
+      "inputs": [],
+      "output": {
+        "format": "text",
+        "description": "Total selected curve length in millimetres."
+      },
+      "tags": [
+        "curves",
+        "length",
+        "measurement",
+        "selection"
+      ]
+    },
+    {
+      "id": "miscellaneous.calculate-element-volume",
+      "name": "Calculate element volume",
+      "summary": "Calculates solid volumes for selected family instances and prints cubic metres.",
+      "category": "miscellaneous",
+      "path": "miscellaneous/calculate_element_volume.py",
+      "documentation": "miscellaneous/calculate_element_volume.md",
+      "engine": "ironpython",
+      "revit": {
+        "minimum": 2024,
+        "tested": []
+      },
+      "risk": "read",
+      "requiresActiveDocument": true,
+      "selection": {
+        "required": true,
+        "description": "One or more FamilyInstance elements with valid solid geometry."
+      },
+      "inputs": [],
+      "output": {
+        "format": "text",
+        "description": "A list containing cubic-metre volumes or per-element error messages."
+      },
+      "tags": [
+        "family-instance",
+        "geometry",
+        "measurement",
+        "selection",
+        "volume"
+      ]
+    },
+    {
+      "id": "miscellaneous.delete-bimo-preview-rays-direct-shapes",
+      "name": "Delete BIMO preview rays",
+      "summary": "Deletes DirectShape elements whose ApplicationId is BIMO_PreviewRays.",
+      "category": "miscellaneous",
+      "path": "miscellaneous/Delete_BIMO_PreviewRays_DirectShapes.py",
+      "documentation": "miscellaneous/Delete_BIMO_PreviewRays_DirectShapes.md",
+      "engine": "ironpython",
+      "revit": {
+        "minimum": 2024,
+        "tested": []
+      },
+      "risk": "destructive",
+      "requiresActiveDocument": true,
+      "selection": {
+        "required": false,
+        "description": "No selection is required; all matching DirectShape elements in the active document are deleted."
+      },
+      "inputs": [],
+      "output": {
+        "format": "text",
+        "description": "Number of deleted DirectShape elements, or a message when no match exists."
+      },
+      "tags": [
+        "bimo",
+        "cleanup",
+        "delete",
+        "direct-shape",
+        "preview-rays"
+      ]
+    }
+  ]
+}
