@@ -3,6 +3,62 @@
   "version": 1,
   "scripts": [
     {
+      "id": "documentation.import-image-to-active-view",
+      "name": "Import image to active view",
+      "summary": "Copies a raster image beside the active RVT when requested, then imports, centers, and proportionally scales it in the visible view.",
+      "category": "documentation",
+      "path": "documentation/import_image_to_active_view.py",
+      "documentation": "documentation/import_image_to_active_view.md",
+      "engine": "ironpython",
+      "revit": {
+        "minimum": 2024,
+        "tested": []
+      },
+      "risk": "write",
+      "requiresActiveDocument": true,
+      "selection": {
+        "required": false,
+        "description": "No selection is required; the image is placed in the active view."
+      },
+      "inputs": [
+        {
+          "index": 0,
+          "name": "image_path",
+          "type": "string",
+          "required": true,
+          "description": "Existing local raster-image path."
+        },
+        {
+          "index": 1,
+          "name": "width_fraction",
+          "type": "number-string",
+          "required": false,
+          "default": "0.4",
+          "description": "Target image width as a fraction of the visible view width, from 0.01 to 1.0."
+        },
+        {
+          "index": 2,
+          "name": "copy_to_document_folder",
+          "type": "boolean-string",
+          "required": false,
+          "default": "true",
+          "description": "Copy the image beside the saved active Revit document before import."
+        }
+      ],
+      "output": {
+        "format": "object",
+        "description": "Imported image IDs, view name, persistent source path, copy status, and final dimensions in feet."
+      },
+      "tags": [
+        "active-view",
+        "documentation",
+        "filesystem",
+        "image",
+        "import",
+        "raster"
+      ]
+    },
+    {
       "id": "modeling.create-toposolid-from-model-lines",
       "name": "Create Toposolid from model lines",
       "summary": "Samples selected model curves and creates a point-based Toposolid from their XYZ elevations.",
