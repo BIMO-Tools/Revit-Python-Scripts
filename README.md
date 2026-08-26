@@ -18,6 +18,7 @@ BIMO hosts the Python engine inside Revit, so users do not need a separate local
 
 | Script | Category | Engine | Risk |
 | --- | --- | --- | --- |
+| [Import image to active view](documentation/import_image_to_active_view.md) | Documentation | IronPython | Writes model and optionally copies a file |
 | [Create Toposolid from model lines](modeling/create_toposolid_from_model_lines.md) | Modeling | IronPython | Writes model |
 | [Calculate selected lines length](miscellaneous/calculate_selected_lines_length_mm.md) | Miscellaneous | IronPython | Read-only |
 | [Calculate element volume](miscellaneous/calculate_element_volume.md) | Miscellaneous | IronPython | Read-only |
@@ -30,6 +31,7 @@ The authoritative machine-readable index is [`catalog.json`](catalog.json). Its 
 ```text
 catalog.json                  Machine-readable script index
 schemas/catalog.schema.json  Catalog JSON Schema
+documentation/               View documentation and image scripts
 modeling/                     Model-creation and editing scripts
 miscellaneous/                General-purpose scripts
 tools/validate_catalog.py     Dependency-free repository validator
