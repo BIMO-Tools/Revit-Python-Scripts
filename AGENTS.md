@@ -6,8 +6,9 @@ This repository is a reviewed catalog of reusable Revit scripts for BIMO Run Pyt
 
 1. Read [`README.md`](README.md) and [`CONTRIBUTING.md`](CONTRIBUTING.md) completely.
 2. Inspect [`catalog.json`](catalog.json), the paired documentation for similar scripts, and [`schemas/catalog.schema.json`](schemas/catalog.schema.json).
-3. Keep one focused user outcome per pull request. Do not add speculative frameworks or unrelated cleanup.
-4. Work on a branch and open a draft pull request. Do not push script changes directly to `main`.
+3. Read applicable long-lived context under [`docs/decisions`](docs/decisions/README.md) before changing a non-obvious algorithm or its defaults.
+4. Keep one focused user outcome per pull request. Do not add speculative frameworks or unrelated cleanup.
+5. Work on a branch and open a draft pull request. Do not push script changes directly to `main`.
 
 ## Adding a script
 
@@ -18,6 +19,13 @@ This repository is a reviewed catalog of reusable Revit scripts for BIMO Run Pyt
 - Document every model, file-system, network, selection, and input side effect. Avoid network access, credentials, machine-specific paths, and modal prompts unless the user explicitly requires them and the repository contract supports them.
 - Keep existing script paths stable because saved BIMO presets may reference them.
 - Never claim a Revit version is tested unless the exact repository script was run successfully in that version. Record partial or manual validation honestly in the pull request.
+
+## Recording decisions
+
+- Store durable algorithm and architecture context under [`docs/decisions`](docs/decisions/README.md).
+- Record the problem, invariants, evaluated alternatives, measured evidence, accepted decision, limitations, and remaining work. Do not store chat transcripts or unfiltered reasoning.
+- Link decision records to the related issue, pull request, implementation, and user guide. Update or supersede the relevant record when later evidence changes the decision.
+- Keep user-facing execution instructions in the paired script documentation and keep this file as a concise routing entry point.
 
 ## Required validation
 

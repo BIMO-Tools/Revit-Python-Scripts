@@ -32,6 +32,7 @@ The authoritative machine-readable index is [`catalog.json`](catalog.json). Its 
 ```text
 catalog.json                  Machine-readable script index
 schemas/catalog.schema.json  Catalog JSON Schema
+docs/decisions/              Durable algorithm and architecture decisions
 documentation/               View documentation and image scripts
 modeling/                     Model-creation and editing scripts
 miscellaneous/                General-purpose scripts
