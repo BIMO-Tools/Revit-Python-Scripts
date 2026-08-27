@@ -20,6 +20,7 @@ BIMO hosts the Python engine inside Revit, so users do not need a separate local
 | --- | --- | --- | --- |
 | [Import image to active view](documentation/import_image_to_active_view.md) | Documentation | IronPython | Writes model and optionally copies a file |
 | [Create Toposolid from model lines](modeling/create_toposolid_from_model_lines.md) | Modeling | IronPython | Writes model |
+| [Create model-line contour from linked STL slice](modeling/create_model_line_contour_from_linked_stl_slice.md) | Modeling | IronPython | Writes model and optionally reads local assemblies |
 | [Calculate selected lines length](miscellaneous/calculate_selected_lines_length_mm.md) | Miscellaneous | IronPython | Read-only |
 | [Calculate element volume](miscellaneous/calculate_element_volume.md) | Miscellaneous | IronPython | Read-only |
 | [Delete BIMO preview rays](miscellaneous/Delete_BIMO_PreviewRays_DirectShapes.md) | Miscellaneous | IronPython | Deletes elements |
