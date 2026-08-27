@@ -4,6 +4,8 @@ Creates one closed exterior contour as Revit model lines by intersecting a selec
 
 The defaults preserve the validated prototype scenario: level `L3`, a slice `1500` mm above the level, `25` mm endpoint snapping, `250` mm polygon gap healing, and `50` mm topology-preserving simplification.
 
+The alternatives, parameter sweep, measured evidence, implementation traps, and remaining experiments are maintained in [decision record 0001](../docs/decisions/0001-linked-stl-slice-contour.md).
+
 ## Compatibility
 
 - BIMO engine: `IronPython`
@@ -114,15 +116,9 @@ No existing model elements are intentionally edited or deleted. Undo the single 
 
 ## Prototype validation
 
-The current approach was exercised in Revit 2024 on the `L3 + 1500 mm` slice shown during development:
+The current approach was exercised in Revit 2024 on the development building model at `L3 + 1500 mm`. The complete measurements, comparison with the earlier concave hull, gap-healing sweep, confidence boundary, and calibration order are recorded in [decision record 0001](../docs/decisions/0001-linked-stl-slice-contour.md).
 
-- 49 meshes and 7,264,272 triangles were inspected;
-- 12,275 raw section segments became 9,861 unique snapped segments;
-- polygonization produced 997 valid polygons, 13 dangles, no cut edges, and no invalid rings;
-- `250` mm gap healing produced one exterior shell of approximately 572.873 m2;
-- `50` mm simplification produced an exterior shell of approximately 573.418 m2 and 179 model lines.
-
-These figures document the prototype run, not a successful run of the exact generalized repository file.
+Those measurements document the prototype run, not a successful run of the exact generalized repository file.
 
 ## Manual Revit test
 
