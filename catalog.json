@@ -126,7 +126,7 @@
     {
       "id": "modeling.create-model-line-contour-from-linked-stl-slice",
       "name": "Create model-line contour from linked STL slice",
-      "summary": "Slices one selected linked STL mesh and creates the largest NetTopologySuite concave hull as a closed model-line contour.",
+      "summary": "Polygonizes a selected linked STL slice, heals small gaps between mesh fragments, and creates the largest exterior shell as model lines.",
       "category": "modeling",
       "path": "modeling/create_model_line_contour_from_linked_stl_slice.py",
       "documentation": "modeling/create_model_line_contour_from_linked_stl_slice.md",
@@ -160,19 +160,19 @@
         },
         {
           "index": 2,
-          "name": "point_snap_mm",
+          "name": "endpoint_snap_mm",
           "type": "number-string",
           "required": false,
           "default": "25",
-          "description": "XY grid used to merge nearby intersection points, in millimetres."
+          "description": "XY grid used to snap section-segment endpoints, in millimetres."
         },
         {
           "index": 3,
-          "name": "maximum_hull_edge_mm",
+          "name": "gap_healing_mm",
           "type": "number-string",
           "required": false,
-          "default": "2500",
-          "description": "Maximum edge length used by the concave-hull algorithm, in millimetres."
+          "default": "250",
+          "description": "Buffer distance used to close gaps between polygonized STL fragments, in millimetres; zero disables healing."
         },
         {
           "index": 4,
@@ -212,12 +212,13 @@
         "description": "Source, slice, geometry-processing, contour-area, model-line, sketch-plane, and line-style details."
       },
       "tags": [
-        "concave-hull",
         "contour",
+        "gap-healing",
         "import-instance",
         "mesh",
         "model-curves",
         "nettopologysuite",
+        "polygonization",
         "stl"
       ]
     },
