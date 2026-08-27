@@ -124,6 +124,104 @@
       ]
     },
     {
+      "id": "modeling.create-model-line-contour-from-linked-stl-slice",
+      "name": "Create model-line contour from linked STL slice",
+      "summary": "Slices one selected linked STL mesh and creates the largest NetTopologySuite concave hull as a closed model-line contour.",
+      "category": "modeling",
+      "path": "modeling/create_model_line_contour_from_linked_stl_slice.py",
+      "documentation": "modeling/create_model_line_contour_from_linked_stl_slice.md",
+      "engine": "ironpython",
+      "revit": {
+        "minimum": 2024,
+        "tested": []
+      },
+      "risk": "write",
+      "requiresActiveDocument": true,
+      "selection": {
+        "required": true,
+        "description": "Exactly one linked ImportInstance containing the STL mesh geometry."
+      },
+      "inputs": [
+        {
+          "index": 0,
+          "name": "level_name",
+          "type": "string",
+          "required": false,
+          "default": "L3",
+          "description": "Exact Revit level name used as the base elevation."
+        },
+        {
+          "index": 1,
+          "name": "slice_offset_mm",
+          "type": "number-string",
+          "required": false,
+          "default": "1500",
+          "description": "Horizontal slice offset above the level, in millimetres."
+        },
+        {
+          "index": 2,
+          "name": "point_snap_mm",
+          "type": "number-string",
+          "required": false,
+          "default": "25",
+          "description": "XY grid used to merge nearby intersection points, in millimetres."
+        },
+        {
+          "index": 3,
+          "name": "maximum_hull_edge_mm",
+          "type": "number-string",
+          "required": false,
+          "default": "2500",
+          "description": "Maximum edge length used by the concave-hull algorithm, in millimetres."
+        },
+        {
+          "index": 4,
+          "name": "simplification_tolerance_mm",
+          "type": "number-string",
+          "required": false,
+          "default": "50",
+          "description": "Topology-preserving contour simplification tolerance, in millimetres."
+        },
+        {
+          "index": 5,
+          "name": "minimum_contour_area_m2",
+          "type": "number-string",
+          "required": false,
+          "default": "10",
+          "description": "Minimum accepted contour area, in square metres."
+        },
+        {
+          "index": 6,
+          "name": "assembly_paths",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "Semicolon-separated full paths to NetTopologySuite prerequisite DLLs and NetTopologySuite.dll, in load order; omit when already loaded."
+        },
+        {
+          "index": 7,
+          "name": "line_style_name",
+          "type": "string",
+          "required": false,
+          "default": "BIMO_STL_Contour",
+          "description": "Model-line subcategory name used for the created contour."
+        }
+      ],
+      "output": {
+        "format": "object",
+        "description": "Source, slice, geometry-processing, contour-area, model-line, sketch-plane, and line-style details."
+      },
+      "tags": [
+        "concave-hull",
+        "contour",
+        "import-instance",
+        "mesh",
+        "model-curves",
+        "nettopologysuite",
+        "stl"
+      ]
+    },
+    {
       "id": "miscellaneous.calculate-selected-lines-length-mm",
       "name": "Calculate selected lines length in millimetres",
       "summary": "Calculates the total length of selected curve elements and prints millimetres.",
