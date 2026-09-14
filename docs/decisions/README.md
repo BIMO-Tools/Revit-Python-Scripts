@@ -18,3 +18,4 @@ Update an existing record when its accepted decision is refined. If a decision i
 | Record | Status | Scope |
 | --- | --- | --- |
 | [0001 — Linked STL slice contour extraction](0001-linked-stl-slice-contour.md) | Accepted for the current draft | Exterior model-line contour from a horizontal linked-STL section |
+| [0002 — Roof-to-Floor conversion](0002-roof-to-floor-conversion.md) | Accepted for the current draft | Native Floors preserving roof shape and openings |

@@ -223,6 +223,56 @@
       ]
     },
     {
+      "id": "modeling.create-floors-from-roofs",
+      "name": "Create Floors from shape-edited roofs",
+      "summary": "Creates validated Floors with roof layers, shape elevations and vertical openings while retaining source roofs and annotations.",
+      "category": "modeling",
+      "path": "modeling/create_floors_from_roofs.py",
+      "documentation": "modeling/create_floors_from_roofs.md",
+      "engine": "ironpython",
+      "revit": {
+        "minimum": 2024,
+        "tested": []
+      },
+      "risk": "write",
+      "requiresActiveDocument": true,
+      "selection": {
+        "required": false,
+        "description": "Select supported shape-edited Basic FootPrintRoofs, or provide an explicit comma-separated roof ID list in IN[1]. Mixed or empty selections are rejected."
+      },
+      "inputs": [
+        {
+          "index": 0,
+          "name": "dry_run",
+          "type": "boolean-string",
+          "required": false,
+          "default": "true",
+          "description": "Create and validate trial Floors, then roll back everything. Set false to retain the new Floors."
+        },
+        {
+          "index": 1,
+          "name": "roof_ids",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "Comma-separated positive roof IDs in the active document; overrides selection. Empty uses current selection."
+        }
+      ],
+      "output": {
+        "format": "object",
+        "description": "Dry-run state, Floor count, source/target IDs, opening mapping, geometry measurements, point corrections and warnings. Trial IDs are not persistent."
+      },
+      "tags": [
+        "roof",
+        "floor",
+        "conversion",
+        "slab-shape",
+        "slope",
+        "opening",
+        "selection"
+      ]
+    },
+    {
       "id": "miscellaneous.calculate-selected-lines-length-mm",
       "name": "Calculate selected lines length in millimetres",
       "summary": "Calculates the total length of selected curve elements and prints millimetres.",
